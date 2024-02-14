@@ -105,6 +105,15 @@ div {
     padding: 0.25em;
     background-color: black;
     color: rgb(109, 0, 233);
+    flex-grow: 1;
+}
+.camera-button:disabled {
+    color: rgba(245, 245, 220, 0.333);
+    background-color: rgba(0, 0, 0, 0.333);
+    pointer-events: none;
+}
+.camera-button:disabled {
+    color: beige;
 }
 .camera-button:hover {
     box-shadow: none;
