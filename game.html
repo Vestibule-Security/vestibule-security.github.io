@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script defer src="game.js"></script>
+        <link href="game.css" rel="stylesheet">
+        <title>Vestibule</title>
+    </head>
+  <body>
+    <div id="header">
+        <h1 class="text-primary text-center">Vestibule Security System v1.0</h1>
+    </div>
+    <div id="control-panel">
+        <div class="zone" id="zone-1">
+            <div class="control-system" id="cameras">
+                <div class="camera-zone-item" id="camera-screen">
+                    <canvas id="camera-canvas"></canvas>
+                </div>
+                <div class="camera-zone-item" id="camera-navigator">
+                    <button class="camera-button">Camera 1</button>
+                    <button class="camera-button">Camera 2</button>
+                    <button class="camera-button">Camera 3</button>
+                    <button class="camera-button">Camera 4</button>
+                    <button class="camera-button">Camera 5</button>
+                </div>
+            </div>
+            <div id="zone-1-subzone-a">
+                <div class="control-system" id="radio">Radio</div>
+                <div class="control-system" id="radar">Radar</div>
+            </div>
+        </div>
+        <div class="zone" id="zone-2">
+            <div class="control-system" id="card-system">Card Sys</div>
+            <div class="control-system" id="doorSystem">Door Sys</div>
+            <div class="control-system" id="power">Power</div>
+        </div>
+    </div>
+  </body>
+</html>

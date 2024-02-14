@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+div {
+    padding: 0;   
+    margin: 0;
+}
+#header {
+    flex-grow: 1;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 2em;
+}
+#control-panel {
+    flex-grow: 14;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* control systems and zones */
+.control-system {
+    background-color: rgb(40, 40, 40);
+    flex-grow: 1;
+    margin: 0.25em;
+    padding: 0.75em;
+}
+.zone {
+    background-color: rgb(49, 49, 49);
+    flex-grow: 1;
+    margin: 0.25em;
+    padding: 0.75em;
+}
+#zone-1 {
+    display: flex;
+    flex-grow: 9;
+    flex-direction: row;
+}
+#cameras {
+    flex-grow: 9;
+    display: flex;
+    flex-direction: row;
+}
+#zone-1-subzone-a {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+#radio {
+    flex-grow: 3;
+}
+#radar {
+    flex-grow: 1;
+}
+#zone-2 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+}
+#card-system {
+    flex-grow: 3;
+}
+#doorSystem {
+    flex-grow: 4;
+}
+#power {
+    flex-grow: 1;
+}
+/* Camera Sys */
+.camera-zone-item {
+    background-color: rgb(20, 20, 20);
+    margin: 0.25em;
+}
+#camera-screen { /* Canvas Div */
+    flex-grow: 4;
+}
+#camera-canvas  { /* Camera Canvas */
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#camera-navigator {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.camera-button {
+    box-shadow: 0 0.125em 0.125em 0 rgba(40, 0, 70, 0.1), 0 0.125em 0.125em 0 rgba(0,0,0,0.19);
+    border: 0;
+    border-top-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    margin: 0.3em;
+    padding: 0.25em;
+    background-color: black;
+    color: rgb(109, 0, 233);
+}
+.camera-button:hover {
+    box-shadow: none;
+}
+.camera-button:active {
+    color: red;
+}
+/* text definitions */
+.text-primary {
+    color: rgb(166, 166, 166);
+    margin: 0;
+    padding: 0;
+}
+.text-center {
+    text-align: center;
+}
