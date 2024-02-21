@@ -2,6 +2,9 @@
 var calculateFPS = true;
 var lowFPSWarning = false; // TODO
 
+// Elements
+var powerTextElement = document.getElementById("powerText");
+
 // Vars
 var gameEpoch = Date.now();
 var maxFPS = 60;
@@ -9,6 +12,8 @@ var canvas = document.getElementById("camera-canvas");
 var ctx = canvas.getContext("2d");
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
+var gameEpoch = Date.now();
+var batteryTime = 120;
 
 
 // initialize the timer variables and start the animation
@@ -37,7 +42,12 @@ function mainLoop() {
         // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
         then = now - (elapsed % fpsInterval);
 
-        // Put your drawing code here
+        powerTextElement.innerText = "Power: " + String(Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) + "%";
+        if ((Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) < 0) {
+            document.getElementById("overlay").style.opacity = 1;
+        } else if ((Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) < 50) {
+            document.getElementById("overlay").style.opacity = (1-((batteryTime - ((now - gameEpoch) / 1000))/batteryTime))*0.25;
+        }
 
     }
 }

@@ -8,6 +8,26 @@
         <title>Vestibule</title>
     </head>
   <body>
+    <div id="overlay"></div>
+    <div id="popup-background">
+        <div class="popup" id="rader-popup">
+            <div></div>
+        </div>
+        <div class="popup" id="phone-popup">
+            <div></div>
+        </div>
+        <div class="popup" id="door-popup">
+            <div></div>
+        </div>
+        <div class="popup" id="radio-popup">
+            <div></div>
+        </div>
+        <div class="popup" id="card-popup">
+            <div class="popupTitle"></div>
+            <div class="popupBody"></div>
+            <div class="popupExitButton"></div>
+        </div>
+    </div>
     <div id="header">
         <h1 class="text-primary text-center">Vestibule Security System v1.0</h1>
     </div>
@@ -18,14 +38,14 @@
                     <canvas id="camera-canvas"></canvas>
                 </div>
                 <div class="camera-zone-item" id="camera-navigator">
-                    <button class="camera-button">Camera 1</button>
-                    <button class="camera-button">Camera 2</button>
-                    <button class="camera-button">Camera 3</button>
-                    <button class="camera-button">Camera 4</button>
-                    <button class="camera-button" disabled>Camera 5</button>
-                    <button class="camera-button" disabled>Camera 6</button>
-                    <button class="camera-button" disabled>Camera 7</button>
-                    <button class="camera-button" disabled>Camera 8</button>
+                    <button class="camera-button" id="camera-button-1">Camera 1</button>
+                    <button class="camera-button" id="camera-button-2">Camera 2</button>
+                    <button class="camera-button" id="camera-button-3">Camera 3</button>
+                    <button class="camera-button" id="camera-button-4">Camera 4</button>
+                    <button class="camera-button" id="camera-button-5" disabled>Camera 5</button>
+                    <button class="camera-button" id="camera-button-6" disabled>Camera 6</button>
+                    <button class="camera-button" id="camera-button-7" disabled>Camera 7</button>
+                    <button class="camera-button" id="camera-button-8" disabled>Camera 8</button>
                 </div>
             </div>
             <div id="zone-1-subzone-a">
@@ -34,9 +54,9 @@
             </div>
         </div>
         <div class="zone" id="zone-2">
-            <div class="control-system" id="card-system">Card Sys</div>
-            <div class="control-system" id="doorSystem">Door Sys</div>
-            <div class="control-system" id="power">Power</div>
+            <div class="control-system" id="card-system"><p>Card Sys</p></div>
+            <div class="control-system" id="doorSystem"><p>Door Sys</p></div>
+            <div class="control-system" id="power"><p id="powerText">Power: 100%</p></div>
         </div>
     </div>
   </body>
