@@ -6,14 +6,13 @@ var lowFPSWarning = false; // TODO
 var powerTextElement = document.getElementById("powerText");
 
 // Vars
-var gameEpoch = Date.now();
 var maxFPS = 60;
 var canvas = document.getElementById("camera-canvas");
 var ctx = canvas.getContext("2d");
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
-var gameEpoch = Date.now();
-var batteryTime = 120;
+var gameEpoch;
+var batteryTime = 100000;
 
 
 // initialize the timer variables and start the animation
@@ -55,5 +54,7 @@ function mainLoop() {
 // On load completion
 window.addEventListener('load', (event) => {
     console.log("----- Page Loaded -----");
+    gameEpoch = Date.now()
     startAnimating(maxFPS);
+    console.log("----- Animation Requested ------");
 })
