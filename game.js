@@ -1,11 +1,19 @@
+// Audio Objects
+var phoneAudio = new Audio("phoneLady.wav");
+
 // Settings
 var calculateFPS = true;
 var lowFPSWarning = false; // TODO
 
 // Elements
 var powerTextElement = document.getElementById("powerText");
+var hangupButton = document.getElementById("hangupButton");
+var phonePopup = document.getElementById("phone-popup");
+var startButton = document.getElementById("startButton");
+var startGameScreen = document.getElementById("startGameScreen");
+var popupBackground = document.getElementById("popup-background");
 
-// Vars
+// Game Vars
 var maxFPS = 60;
 var canvas = document.getElementById("camera-canvas");
 var ctx = canvas.getContext("2d");
@@ -54,7 +62,19 @@ function mainLoop() {
 // On load completion
 window.addEventListener('load', (event) => {
     console.log("----- Page Loaded -----");
+})
+
+startButton.addEventListener("click", function() {
+    document.body.requestFullscreen();
+    phoneAudio.play();
+    startGameScreen.style.display = "none";
+    phonePopup.style.display = "block";
     gameEpoch = Date.now()
     startAnimating(maxFPS);
-    console.log("----- Animation Requested ------");
-})
+    console.log("----- Camera Animation Requested ------");
+});
+
+hangupButton.addEventListener("click", function() {
+    phonePopup.style.display = "none";
+    popupBackground.style.display = "none";
+});
