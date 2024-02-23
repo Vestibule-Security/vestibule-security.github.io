@@ -89,13 +89,13 @@ window.addEventListener('load', (event) => {
 })
 
 startButton.addEventListener("click", function() {
-    document.body.requestFullscreen();
     phoneAudio.play();
     startGameScreen.style.display = "none";
     phonePopup.style.display = "block";
     gameEpoch = Date.now()
     startAnimating(maxFPS);
     console.log("----- Camera Animation Requested ------");
+    document.body.requestFullscreen();
 });
 
 hangupButton.addEventListener("click", function() {

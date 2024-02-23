@@ -50,6 +50,7 @@ div {
     right: 0;
     bottom: 0;
     z-index: 100;
+    /* https://stackoverflow.com/questions/70208639/how-to-improve-an-animated-tv-static-effect-using-a-pure-css-gradient */
     background-image: url(https://cliply.co/wp-content/uploads/2021/07/402107790_STATIC_NOISE_400.gif);
     background-repeat: repeat;
     opacity: 0.002;
