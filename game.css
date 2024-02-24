@@ -51,7 +51,7 @@ div {
     bottom: 0;
     z-index: 100;
     /* https://stackoverflow.com/questions/70208639/how-to-improve-an-animated-tv-static-effect-using-a-pure-css-gradient */
-    background-image: url(https://cliply.co/wp-content/uploads/2021/07/402107790_STATIC_NOISE_400.gif);
+    background-image: url("Visual_Assets/Static.gif");
     background-repeat: repeat;
     opacity: 0.002;
 }
@@ -126,10 +126,14 @@ div {
 }
 #camera-screen { /* Canvas Div */
     flex-grow: 4;
-}
-#camera-canvas  { /* Camera Canvas */
+    position: relative;
     width: 100%;
     height: 100%;
+}
+#camera-canvas  { /* Camera Canvas */
+    position: absolute;
+    top: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     border: 0;
@@ -236,6 +240,9 @@ div {
     width: 100vw;
     height: 100vh;
     border-radius: 0em;
+}
+#SVGRenderStage {
+    display: none;
 }
 /* text definitions */
 .text-primary {
