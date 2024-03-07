@@ -37,6 +37,68 @@ a:hover {
     color: #444cf7;
     z-index: 5;
 }
+.layer1 {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: none;
+    padding: none;
+}
+
+.layer2 {
+  width: 100%;
+  margin-left: -100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: none;
+}
+
+.tv-static {
+  width: 100vw;
+  height: 100vh;
+  margin: none;
+  padding: none;
+  background-image: repeating-radial-gradient(circle at 17% 32%, white, black 0.00085px);    
+}
+
+.animation1 {
+  animation: back1 1s linear infinite;
+}
+
+.animation2 {
+  animation: back2 0.1s linear infinite;
+}
+
+@keyframes back1 {
+  from {
+    background-size: 100% 100%;
+  }
+
+  to {
+    background-size: 99% 100%;
+  }
+}
+
+@keyframes back2 {
+  from {
+    background-size: 48.56% 50%;
+  }
+
+  to {
+    background-size: 43.9% 50.1%;
+  }
+}
+#overlay {
+    display: block;
+    pointer-events: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    opacity: 0.1;
+}
 #bodyDiv {
     display: flex;
     flex-direction: column;
