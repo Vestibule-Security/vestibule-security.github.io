@@ -184,6 +184,19 @@ startButton.addEventListener("click", function() {
     radarButtonOverlay.style.height = radarButton.style.height*0.1;
 });
 
+// Resize Canvas
+window.addEventListener("resize", (event) => {
+    if (((canvasDiv.clientWidth * (9/16)) == canvasDiv.clientHeight) || ((canvasDiv.clientWidth * (9/16)) < canvasDiv.clientHeight)) {
+        canvas.style.width = String(canvasDiv.clientWidth) + "px";
+        canvas.style.height = String(canvasDiv.clientWidth * (9/16)) + "px";
+    } else { //If height not big enough to meet ratio
+        canvas.style.width = String(canvasDiv.clientHeight * (16/9)) + "px";
+        canvas.style.height = String(canvasDiv.clientHeight) + "px";
+    }
+    radarButtonOverlay.style.width = String(radarButton.clientWidth) + "px";
+    radarButtonOverlay.style.height = String(radarButton.clientHeight) + "px";
+});
+
 cameraButton1.addEventListener("click", function() {
     scene = sceneSelection.camera1;
     Button1Audio.play();
@@ -224,21 +237,10 @@ cameraButton8.addEventListener("click", function() {
     Button8Audio.play();
     brownNoise25ms.play();
 });
-
-// Resize Canvas
-window.addEventListener("resize", (event) => {
-    if (((canvasDiv.clientWidth * (9/16)) == canvasDiv.clientHeight) || ((canvasDiv.clientWidth * (9/16)) < canvasDiv.clientHeight)) {
-        canvas.style.width = String(canvasDiv.clientWidth) + "px";
-        canvas.style.height = String(canvasDiv.clientWidth * (9/16)) + "px";
-    } else { //If height not big enough to meet ratio
-        canvas.style.width = String(canvasDiv.clientHeight * (16/9)) + "px";
-        canvas.style.height = String(canvasDiv.clientHeight) + "px";
-    }
-    radarButtonOverlay.style.width = String(radarButton.clientWidth) + "px";
-    radarButtonOverlay.style.height = String(radarButton.clientHeight) + "px";
-});
-
 hangupButton.addEventListener("click", function() {
     phonePopup.style.display = "none";
     popupBackground.style.display = "none";
+});
+radarButton.addEventListener("click", function() {
+    
 });

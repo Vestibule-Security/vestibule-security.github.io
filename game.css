@@ -122,6 +122,10 @@ div {
     border-width: 0.5em;
     border-color: black;
     border-style: solid;
+    transition: all 1s ease-in;
+}
+#radarButton:hover {
+    background-color: red;
 }
 #radarButtonOverlay {
     background-image: conic-gradient(white, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025),rgba(255, 255, 255, 0.0125), transparent);
