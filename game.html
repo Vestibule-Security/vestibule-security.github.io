@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script defer src="game.js"></script>
-        <link href="game.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/Visual_Assets/logo.svg">
+        <script defer src="game.js?version=2b"></script>
+        <link href="game.css?version=2b" rel="stylesheet">
         <title>Vestibule</title>
     </head>
   <body>
@@ -12,7 +13,7 @@
     <div id="popup-background">
         <div class="popup" id="rader-popup">
             <div class="popupTitle">
-                <h1 class="popupTitle"></h1>
+                <h1 class="popupTitle">Radar System</h1>
             </div>
             <div class="popupBody">
                 <p class="popupBodyText"></p>
@@ -98,7 +99,10 @@
             </div>
             <div id="zone-1-subzone-a">
                 <div class="control-system" id="radio">Radio</div>
-                <div class="control-system" id="radar">Radar</div>
+                <div class="control-system" id="radar">
+                    <div id="radarButtonOverlay"></div>
+                    <button id="radarButton"></button>
+                </div>
             </div>
         </div>
         <div class="zone" id="zone-2">
