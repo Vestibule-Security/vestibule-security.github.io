@@ -34,7 +34,7 @@ a {
 }
 a:hover {
     text-shadow: 0 0 10px #000000, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000, 0 0 60px #000000, 0 0 70px #000000;
-    color: #444cf7;
+    color: #444df7;
     z-index: 5;
 }
 .layer1 {

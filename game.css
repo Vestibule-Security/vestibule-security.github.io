@@ -12,6 +12,12 @@ div {
     padding: 0;   
     margin: 0;
 }
+button {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
 #mainTitle {
     color: yellow;
     font-size: 7vw;
@@ -27,6 +33,27 @@ div {
     flex-direction: column;
     align-items: center;
     justify-content:space-around;
+}
+#hangupButton {
+    border: none;
+    background-color: green;
+    height: 10vh;
+    width: 10vh;
+    padding: 2vh;
+    border-radius: 100%;
+}
+#hangupButton2 {
+    border: none;
+    background-color: red;
+    height: 10vh;
+    width: 10vh;
+    padding: 2vh;
+    border-radius: 100%;
+}
+#hangupSVG {
+    color: black;
+    height: 100%;
+    width: 100%;
 }
 #startButton {
     border: 0.125em dotted purple;
@@ -205,6 +232,17 @@ div {
 .camera-button:active {
     color: red;
 }
+#onAndOff {
+    color: lightblue;
+}
+#powerUsageSVG {
+    height: 100%;
+}
+#powerUsage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Popup and Settings Management */
 #popup-background {
     display: block;
@@ -249,6 +287,12 @@ div {
 }
 .popupExit {
     height: 10%;
+}
+#hangupDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .popupHeader {
     height: 9%;

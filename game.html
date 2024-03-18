@@ -39,8 +39,9 @@
                     Dear. Guard Name, It is with both cosmic amusement and existential dread that I welcome you to your new position as Security Guardian of the Vestibule entrance! As your, ahem, non-corporeal supervisor, I find myself unable to shake hands (metaphorically speaking, of course) but rest assured, I am radiating enthusiasm! Now, before you start fiddling with that outdated employee handbook you mentioned (paper and ink? How quaint!), allow me to clarify your primary task: Don't let anything... curious... slip through that portal. Think of it as the ultimate game of whack-a-mole, with reality itself as the playing field and your sanity as the prize! Exciting, isn't it? Of course, you'll need sustenance for this thrilling endeavor. While we lack a traditional break room with stale coffee and lukewarm donuts (shudder), fear not! Every now and then, I might dispense a… surprise snack. Consider it a reward for keeping the dimensional snack supply safe, or perhaps a test of your courage. Who knows, with the ever-shifting nature of the Backrooms, even a stale cracker could become a delicacy! Remember, dear Guardian, your survival is not only in your best interest, but also enhances our, ahem, entertainment value. So, stand firm, observe the portal with unwavering vigilance, and remember: justice can be dispensed in many forms, including expired beans and questionable chewing gum. Just don't say I didn't warn you. With otherworldly anticipation, Your Boss; P.S. Feel free to address any questions or existential anxieties to the void. We may or may not answer, depending on how amusing your query is. Just kidding... maybe. ;)
                 </p>
             </div>
-            <div class="popupExit">
-                <button class="popupExitButton" id="hangupButton">Hangup</button>
+            <div class="popupExit" id="hangupDiv">
+                <button id="hangupButton"><svg id="hangupSVG" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m136-144-92-90q-12-12-12-28t12-28q88-95 203-142.5T480-480q118 0 232.5 47.5T916-290q12 12 12 28t-12 28l-92 90q-11 11-25.5 12t-26.5-8l-116-88q-8-6-12-14t-4-18v-114q-38-12-78-19t-82-7q-42 0-82 7t-78 19v114q0 10-4 18t-12 14l-116 88q-12 9-26.5 8T136-144Zm104-202q-29 15-56 34.5T128-268l40 40 72-56v-62Zm480 2v60l72 56 40-38q-29-26-56-45t-56-33Zm-480-2Zm480 2ZM440-680v-200h80v200h-80Zm264 114-56-58 142-142 56 58-142 142Zm-448 0L114-708l56-58 142 142-56 58Z"/></svg></button>
+                <button id="hangupButton2"><svg id="hangupSVG" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m136-304-92-90q-12-12-12-28t12-28q88-95 203-142.5T480-640q118 0 232.5 47.5T916-450q12 12 12 28t-12 28l-92 90q-11 11-25.5 12t-26.5-8l-116-88q-8-6-12-14t-4-18v-114q-38-12-78-19t-82-7q-42 0-82 7t-78 19v114q0 10-4 18t-12 14l-116 88q-12 9-26.5 8T136-304Zm104-198q-29 15-56 34.5T128-424l40 40 72-56v-62Zm480 2v60l72 56 40-38q-29-26-56-45t-56-33Zm-480-2Zm480 2Z"/></svg></button>
             </div>
         </div>
         <div class="popup" id="door-popup">
@@ -87,10 +88,11 @@
                     <canvas id="camera-canvas">CANVAS NOT SUPPORTED</canvas>
                 </div>
                 <div class="camera-zone-item" id="camera-navigator">
-                    <button class="camera-button" id="camera-button-1">Camera 1</button>
-                    <button class="camera-button" id="camera-button-2">Camera 2</button>
-                    <button class="camera-button" id="camera-button-3">Camera 3</button>
-                    <button class="camera-button" id="camera-button-4">Camera 4</button>
+                    <button class="camera-button" id="onAndOff">Enable System</button>
+                    <button class="camera-button" id="camera-button-1" disabled>Camera 1</button>
+                    <button class="camera-button" id="camera-button-2" disabled>Camera 2</button>
+                    <button class="camera-button" id="camera-button-3" disabled>Camera 3</button>
+                    <button class="camera-button" id="camera-button-4" disabled>Camera 4</button>
                     <button class="camera-button" id="camera-button-5" disabled>Camera 5</button>
                     <button class="camera-button" id="camera-button-6" disabled>Camera 6</button>
                     <button class="camera-button" id="camera-button-7" disabled>Camera 7</button>
@@ -108,6 +110,40 @@
         <div class="zone" id="zone-2">
             <div class="control-system" id="card-system"><p>Card Sys</p></div>
             <div class="control-system" id="doorSystem"><p>Door Sys</p></div>
+            <div class="control-system" id="powerUsage">
+                <svg id="powerUsageSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" fill="none">
+                <g id="Frame 1">
+                <g clip-path="url(#clip0_1_2)">
+                <rect id="Backdrop" width="300" height="150" fill="#B1B1B1"/>
+                <g id="Cells">
+                <g id="Cell1Group">
+                <rect id="Cell1" width="75" height="150" fill="#006A37"/>
+                <path id="Power1" d="M36.25 95L48.75 70.625H40V55L27.5 79.375H36.25V95ZM38 100C34.5417 100 31.2917 99.3438 28.25 98.0312C25.2083 96.7188 22.5625 94.9375 20.3125 92.6875C18.0625 90.4375 16.2812 87.7917 14.9688 84.75C13.6562 81.7083 13 78.4583 13 75C13 71.5417 13.6562 68.2917 14.9688 65.25C16.2812 62.2083 18.0625 59.5625 20.3125 57.3125C22.5625 55.0625 25.2083 53.2812 28.25 51.9688C31.2917 50.6562 34.5417 50 38 50C41.4583 50 44.7083 50.6562 47.75 51.9688C50.7917 53.2812 53.4375 55.0625 55.6875 57.3125C57.9375 59.5625 59.7188 62.2083 61.0312 65.25C62.3438 68.2917 63 71.5417 63 75C63 78.4583 62.3438 81.7083 61.0312 84.75C59.7188 87.7917 57.9375 90.4375 55.6875 92.6875C53.4375 94.9375 50.7917 96.7188 47.75 98.0312C44.7083 99.3438 41.4583 100 38 100ZM38 95C43.5417 95 48.2604 93.0521 52.1562 89.1562C56.0521 85.2604 58 80.5417 58 75C58 69.4583 56.0521 64.7396 52.1562 60.8438C48.2604 56.9479 43.5417 55 38 55C32.4583 55 27.7396 56.9479 23.8438 60.8438C19.9479 64.7396 18 69.4583 18 75C18 80.5417 19.9479 85.2604 23.8438 89.1562C27.7396 93.0521 32.4583 95 38 95Z" fill="black"/>
+                </g>
+                <g id="Cell2Group">
+                <rect id="Cell2" x="75" width="75" height="150" fill="#006A37"/>
+                <path id="Power2" d="M111.25 95L123.75 70.625H115V55L102.5 79.375H111.25V95ZM113 100C109.542 100 106.292 99.3438 103.25 98.0312C100.208 96.7188 97.5625 94.9375 95.3125 92.6875C93.0625 90.4375 91.2812 87.7917 89.9688 84.75C88.6562 81.7083 88 78.4583 88 75C88 71.5417 88.6562 68.2917 89.9688 65.25C91.2812 62.2083 93.0625 59.5625 95.3125 57.3125C97.5625 55.0625 100.208 53.2812 103.25 51.9688C106.292 50.6562 109.542 50 113 50C116.458 50 119.708 50.6562 122.75 51.9688C125.792 53.2812 128.438 55.0625 130.688 57.3125C132.938 59.5625 134.719 62.2083 136.031 65.25C137.344 68.2917 138 71.5417 138 75C138 78.4583 137.344 81.7083 136.031 84.75C134.719 87.7917 132.938 90.4375 130.688 92.6875C128.438 94.9375 125.792 96.7188 122.75 98.0312C119.708 99.3438 116.458 100 113 100ZM113 95C118.542 95 123.26 93.0521 127.156 89.1562C131.052 85.2604 133 80.5417 133 75C133 69.4583 131.052 64.7396 127.156 60.8438C123.26 56.9479 118.542 55 113 55C107.458 55 102.74 56.9479 98.8438 60.8438C94.9479 64.7396 93 69.4583 93 75C93 80.5417 94.9479 85.2604 98.8438 89.1562C102.74 93.0521 107.458 95 113 95Z" fill="black"/>
+                </g>
+                <g id="Cell3Group">
+                <rect id="Cell3" x="150" width="75" height="150" fill="#006A37"/>
+                <path id="Power3" d="M186.25 95L198.75 70.625H190V55L177.5 79.375H186.25V95ZM188 100C184.542 100 181.292 99.3438 178.25 98.0312C175.208 96.7188 172.562 94.9375 170.312 92.6875C168.062 90.4375 166.281 87.7917 164.969 84.75C163.656 81.7083 163 78.4583 163 75C163 71.5417 163.656 68.2917 164.969 65.25C166.281 62.2083 168.062 59.5625 170.312 57.3125C172.562 55.0625 175.208 53.2812 178.25 51.9688C181.292 50.6562 184.542 50 188 50C191.458 50 194.708 50.6562 197.75 51.9688C200.792 53.2812 203.438 55.0625 205.688 57.3125C207.938 59.5625 209.719 62.2083 211.031 65.25C212.344 68.2917 213 71.5417 213 75C213 78.4583 212.344 81.7083 211.031 84.75C209.719 87.7917 207.938 90.4375 205.688 92.6875C203.438 94.9375 200.792 96.7188 197.75 98.0312C194.708 99.3438 191.458 100 188 100ZM188 95C193.542 95 198.26 93.0521 202.156 89.1562C206.052 85.2604 208 80.5417 208 75C208 69.4583 206.052 64.7396 202.156 60.8438C198.26 56.9479 193.542 55 188 55C182.458 55 177.74 56.9479 173.844 60.8438C169.948 64.7396 168 69.4583 168 75C168 80.5417 169.948 85.2604 173.844 89.1562C177.74 93.0521 182.458 95 188 95Z" fill="black"/>
+                </g>
+                <g id="Cell4Group">
+                <rect id="Cell4" x="225" width="75" height="150" fill="#006A37"/>
+                <path id="Power4" d="M261.25 95L273.75 70.625H265V55L252.5 79.375H261.25V95ZM263 100C259.542 100 256.292 99.3438 253.25 98.0312C250.208 96.7188 247.562 94.9375 245.312 92.6875C243.062 90.4375 241.281 87.7917 239.969 84.75C238.656 81.7083 238 78.4583 238 75C238 71.5417 238.656 68.2917 239.969 65.25C241.281 62.2083 243.062 59.5625 245.312 57.3125C247.562 55.0625 250.208 53.2812 253.25 51.9688C256.292 50.6562 259.542 50 263 50C266.458 50 269.708 50.6562 272.75 51.9688C275.792 53.2812 278.438 55.0625 280.688 57.3125C282.938 59.5625 284.719 62.2083 286.031 65.25C287.344 68.2917 288 71.5417 288 75C288 78.4583 287.344 81.7083 286.031 84.75C284.719 87.7917 282.938 90.4375 280.688 92.6875C278.438 94.9375 275.792 96.7188 272.75 98.0312C269.708 99.3438 266.458 100 263 100ZM263 95C268.542 95 273.26 93.0521 277.156 89.1562C281.052 85.2604 283 80.5417 283 75C283 69.4583 281.052 64.7396 277.156 60.8438C273.26 56.9479 268.542 55 263 55C257.458 55 252.74 56.9479 248.844 60.8438C244.948 64.7396 243 69.4583 243 75C243 80.5417 244.948 85.2604 248.844 89.1562C252.74 93.0521 257.458 95 263 95Z" fill="black"/>
+                </g>
+                </g>
+                <rect id="CellDivider1" x="220" width="10" height="150" fill="#898989"/>
+                <rect id="CellDivider2" x="145" width="10" height="150" fill="#898989"/>
+                <rect id="CellDivider3" x="70" width="10" height="150" fill="#898989"/>
+                </g>
+                </g>
+                <defs>
+                <clipPath id="clip0_1_2">
+                <rect width="300" height="150" rx="50" fill="white"/>
+                </clipPath>
+                </defs>
+                </svg></div>
             <div class="control-system" id="power"><p id="powerText">Power: 100%</p></div>
         </div>
     </div>

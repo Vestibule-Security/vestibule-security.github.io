@@ -45,6 +45,8 @@ const SceneCameraImage7 = new Image();
 SceneCameraImage7.src = "Visual_Assets/Camera7.jpg";
 const SceneCameraImage8 = new Image();
 SceneCameraImage8.src = "Visual_Assets/Camera8.jpg";
+const SceneMap = new Image();
+SceneMap.src = "Visual_Assets/Map.jpg";
 
 // Scene Selection Class
 class Scenes {
@@ -68,6 +70,7 @@ let lowFPSWarning = false; // TODO
 // Elements
 const powerTextElement = document.getElementById("powerText");
 const hangupButton = document.getElementById("hangupButton");
+const hangupButton2 = document.getElementById("hangupButton2");
 const phonePopup = document.getElementById("phone-popup");
 const startButton = document.getElementById("startButton");
 const startGameScreen = document.getElementById("startGameScreen");
@@ -83,6 +86,7 @@ const cameraButton5 = document.getElementById("camera-button-5");
 const cameraButton6 = document.getElementById("camera-button-6");
 const cameraButton7 = document.getElementById("camera-button-7");
 const cameraButton8 = document.getElementById("camera-button-8");
+const cameraButtonOnAndOff = document.getElementById("onAndOff");
 
 // Game Vars
 let maxFPS = 60;
@@ -91,8 +95,18 @@ let frameCount = 0;
 let fps, fpsInterval, startTime, now, then, elapsed;
 let gameEpoch;
 let batteryTime = 100000;
+// Cameras cost power
+// Radar costs power
+// Card System costs power
+// Gateway Open costs power
+// Security Doors cost power
+// Radio Costs power
+
+let batteryUsage = 0;
 const sceneSelection = new Scenes();
-let scene = 0;
+let scene = -1;
+let gatewayOpen = false;
+let camerasEnabled = false;
 
 
 // initialize the timer variables and start the animation
@@ -136,6 +150,7 @@ function mainLoop() {
         console.log("-- Animation Cycle Start --");
         clear();
 
+        // Handle Scenes
         switch (scene) {
             case sceneSelection.camera1:
                 ctx.drawImage(SceneCameraImage1, 0, 0, canvas.width, canvas.height);
@@ -161,8 +176,27 @@ function mainLoop() {
             case sceneSelection.camera8:
                 ctx.drawImage(SceneCameraImage8, 0, 0, canvas.width, canvas.height);
                 break;
+            case sceneSelection.map:
+                ctx.drawImage(SceneMap, 0, 0, canvas.width, canvas.height);
+                break;
         }
 
+        // Handle Buttons
+        if (camerasEnabled) {
+            if (scene == sceneSelection.map) {
+                // System Off and Enabled
+                cameraButtonOnAndOff.innerHTML = "Disable System";
+                cameraButtonOnAndOff.style.color = "red";
+            } else {
+                // System On and Enabled
+                cameraButtonOnAndOff.innerHTML = "System Running";
+                cameraButtonOnAndOff.style.color = "green";
+            }
+        } else {
+            // System Off and Disabled
+            cameraButtonOnAndOff.innerHTML = "Enable System";
+            cameraButtonOnAndOff.style.color = "lightblue";
+        }
     }
 }
 
@@ -237,10 +271,25 @@ cameraButton8.addEventListener("click", function() {
     Button8Audio.play();
     brownNoise25ms.play();
 });
+cameraButtonOnAndOff.addEventListener("click", function() {
+    if ((camerasEnabled) && (scene == sceneSelection.map)) {
+        camerasEnabled = false;
+    } else {
+        camerasEnabled = true;
+    }
+    scene = sceneSelection.map;
+    brownNoise25ms.play();
+})
 hangupButton.addEventListener("click", function() {
     phonePopup.style.display = "none";
     popupBackground.style.display = "none";
 });
+hangupButton2.addEventListener("click", function() {
+    phonePopup.style.display = "none";
+    popupBackground.style.display = "none";
+    phoneAudio.pause();
+    delete phoneAudio;
+})
 radarButton.addEventListener("click", function() {
     
 });
