@@ -10,6 +10,10 @@ if (((canvasDiv.clientWidth * (9/16)) == canvasDiv.clientHeight) || ((canvasDiv.
     canvas.style.height = String(canvasDiv.clientHeight) + "px";
 }
 
+function rand(min, max){
+    return (Math.floor(Math.pow(10,14)*Math.random()*Math.random())%(max-min+1))+min;
+}
+
 // Audio Objects
 const phoneAudio = new Audio("Audio-Files/phoneLady.wav");
 const brownNoise25ms = new Audio("Audio-Files/25ms Brown.mp3");
@@ -96,6 +100,9 @@ let frameCount = 0;
 let fps, fpsInterval, startTime, now, then, elapsed;
 let gameEpoch;
 let batteryTime = 10000;
+let batteryRandomnessVariableExponential = rand(0.3, 0.7);
+let batteryRandomnessVariableLinear = 1 - batteryRandomnessVariableExponential;
+let batteryRandomnessVariableSinusoidal = rand(0.02, 0.03);
 // Cameras cost power
 // Radar costs power
 // Card System costs power
@@ -144,7 +151,7 @@ function mainLoop() {
 
         // Adjust power
         let realPowerValue = ((batteryTime - ((now - gameEpoch) / 1000))/batteryTime);
-        let powerValue = Math.round(((0.5*Math.pow(realPowerValue, 7))+(realPowerValue*0.5)+(0.0225*Math.sin(realPowerValue*8*Math.PI)))*100);
+        let powerValue = Math.round(((batteryRandomnessVariableExponential*Math.pow(realPowerValue, 7))+(realPowerValue*batteryRandomnessVariableLinear)+(batteryRandomnessVariableSinusoidal*Math.sin(realPowerValue*8*Math.PI)))*100);
         powerTextElement.innerText = "Power: " + String(powerValue) + "%";
         if ((powerValue < 0)) {
             document.getElementById("overlay").style.opacity = 1;
