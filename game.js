@@ -143,10 +143,12 @@ function mainLoop() {
         then = now - (elapsed % fpsInterval);
 
         // Adjust power
-        powerTextElement.innerText = "Power: " + String(Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) + "%";
-        if ((Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) < 0) {
+        let realPowerValue = ((batteryTime - ((now - gameEpoch) / 1000))/batteryTime);
+        let powerValue = Math.round(((0.5*Math.pow(realPowerValue, 7))+(realPowerValue*0.5)+(0.0225*Math.sin(realPowerValue*8*Math.PI)))*100);
+        powerTextElement.innerText = "Power: " + String(powerValue) + "%";
+        if ((powerValue < 0)) {
             document.getElementById("overlay").style.opacity = 1;
-        } else if ((Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) < 50) {
+        } else if (powerValue < 50) {
             document.getElementById("overlay").style.opacity = (1-((batteryTime - ((now - gameEpoch) / 1000))/batteryTime))*0.25;
         }
 
