@@ -86,6 +86,7 @@ const cameraButton5 = document.getElementById("camera-button-5");
 const cameraButton6 = document.getElementById("camera-button-6");
 const cameraButton7 = document.getElementById("camera-button-7");
 const cameraButton8 = document.getElementById("camera-button-8");
+const cameraList = document.getElementsByClassName("securityCamera");
 const cameraButtonOnAndOff = document.getElementById("onAndOff");
 
 // Game Vars
@@ -94,19 +95,21 @@ let ctx = canvas.getContext("2d");
 let frameCount = 0;
 let fps, fpsInterval, startTime, now, then, elapsed;
 let gameEpoch;
-let batteryTime = 100000;
+let batteryTime = 10000;
 // Cameras cost power
 // Radar costs power
 // Card System costs power
 // Gateway Open costs power
 // Security Doors cost power
 // Radio Costs power
+// Different battery levels cause different alarms
 
 let batteryUsage = 0;
 const sceneSelection = new Scenes();
 let scene = -1;
 let gatewayOpen = false;
 let camerasEnabled = false;
+let sceneChanged = true;
 
 
 // initialize the timer variables and start the animation
@@ -135,11 +138,11 @@ function mainLoop() {
 
     // if enough time has elapsed, draw the next frame
     if (elapsed > fpsInterval) {
-
         // Get ready for next frame by setting then=now, but also adjust for your
         // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
         then = now - (elapsed % fpsInterval);
 
+        // Adjust power
         powerTextElement.innerText = "Power: " + String(Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) + "%";
         if ((Math.round(((batteryTime - ((now - gameEpoch) / 1000))/batteryTime)*100)) < 0) {
             document.getElementById("overlay").style.opacity = 1;
@@ -147,55 +150,66 @@ function mainLoop() {
             document.getElementById("overlay").style.opacity = (1-((batteryTime - ((now - gameEpoch) / 1000))/batteryTime))*0.25;
         }
 
-        console.log("-- Animation Cycle Start --");
-        clear();
-
-        // Handle Scenes
-        switch (scene) {
-            case sceneSelection.camera1:
-                ctx.drawImage(SceneCameraImage1, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera2:
-                ctx.drawImage(SceneCameraImage2, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera3:
-                ctx.drawImage(SceneCameraImage3, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera4:
-                ctx.drawImage(SceneCameraImage4, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera5:
-                ctx.drawImage(SceneCameraImage5, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera6:
-                ctx.drawImage(SceneCameraImage6, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera7:
-                ctx.drawImage(SceneCameraImage7, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.camera8:
-                ctx.drawImage(SceneCameraImage8, 0, 0, canvas.width, canvas.height);
-                break;
-            case sceneSelection.map:
-                ctx.drawImage(SceneMap, 0, 0, canvas.width, canvas.height);
-                break;
-        }
-
-        // Handle Buttons
-        if (camerasEnabled) {
-            if (scene == sceneSelection.map) {
-                // System Off and Enabled
-                cameraButtonOnAndOff.innerHTML = "Disable System";
-                cameraButtonOnAndOff.style.color = "red";
-            } else {
-                // System On and Enabled
-                cameraButtonOnAndOff.innerHTML = "System Running";
-                cameraButtonOnAndOff.style.color = "green";
+        // If scene changed then clear the screen and re-render
+        if (sceneChanged) {
+            // Clear the screen
+            clear();
+            // Handle Scenes
+            switch (scene) {
+               case sceneSelection.camera1:
+                   ctx.drawImage(SceneCameraImage1, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera2:
+                   ctx.drawImage(SceneCameraImage2, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera3:
+                   ctx.drawImage(SceneCameraImage3, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera4:
+                   ctx.drawImage(SceneCameraImage4, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera5:
+                   ctx.drawImage(SceneCameraImage5, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera6:
+                   ctx.drawImage(SceneCameraImage6, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera7:
+                   ctx.drawImage(SceneCameraImage7, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.camera8:
+                   ctx.drawImage(SceneCameraImage8, 0, 0, canvas.width, canvas.height);
+                   break;
+               case sceneSelection.map:
+                   ctx.drawImage(SceneMap, 0, 0, canvas.width, canvas.height);
+                   break;
             }
+            sceneChanged = false;
+        }
+    }
+}
+
+function handleButtons() {
+    // Handle Buttons
+    if (camerasEnabled) {
+        if (scene == sceneSelection.map) {
+            // System Off and Enabled
+            cameraButtonOnAndOff.innerHTML = "Disable System";
+            cameraButtonOnAndOff.style.color = "red";
         } else {
-            // System Off and Disabled
-            cameraButtonOnAndOff.innerHTML = "Enable System";
-            cameraButtonOnAndOff.style.color = "lightblue";
+            // System On and Enabled
+            cameraButtonOnAndOff.innerHTML = "System Running";
+            cameraButtonOnAndOff.style.color = "green";
+        }
+        for (var i=0;i<cameraList.length;i++) {
+            cameraList[i].disabled = false;
+        }
+    } else {
+        // System Off and Disabled
+        cameraButtonOnAndOff.innerHTML = "Enable System";
+        cameraButtonOnAndOff.style.color = "lightblue";
+        for (var i=0;i<cameraList.length;i++) {
+            cameraList[i].disabled = true;
         }
     }
 }
@@ -220,6 +234,7 @@ startButton.addEventListener("click", function() {
 
 // Resize Canvas
 window.addEventListener("resize", (event) => {
+    // Mathematically Resize the Canvas
     if (((canvasDiv.clientWidth * (9/16)) == canvasDiv.clientHeight) || ((canvasDiv.clientWidth * (9/16)) < canvasDiv.clientHeight)) {
         canvas.style.width = String(canvasDiv.clientWidth) + "px";
         canvas.style.height = String(canvasDiv.clientWidth * (9/16)) + "px";
@@ -229,47 +244,66 @@ window.addEventListener("resize", (event) => {
     }
     radarButtonOverlay.style.width = String(radarButton.clientWidth) + "px";
     radarButtonOverlay.style.height = String(radarButton.clientHeight) + "px";
+
+    // Tell the canvas to re-render content that is on the screen
+    sceneChanged = true;
 });
 
 cameraButton1.addEventListener("click", function() {
     scene = sceneSelection.camera1;
     Button1Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton2.addEventListener("click", function() {
     scene = sceneSelection.camera2;
     Button2Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton3.addEventListener("click", function() {
     scene = sceneSelection.camera3;
     Button3Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton4.addEventListener("click", function() {
     scene = sceneSelection.camera4;
     Button4Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton5.addEventListener("click", function() {
     scene = sceneSelection.camera5;
     Button5Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton6.addEventListener("click", function() {
     scene = sceneSelection.camera6;
     Button6Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton7.addEventListener("click", function() {
     scene = sceneSelection.camera7;
     Button7Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButton8.addEventListener("click", function() {
     scene = sceneSelection.camera8;
     Button8Audio.play();
     brownNoise25ms.play();
+    // Tell the canvas to render new content
+    sceneChanged = true;
 });
 cameraButtonOnAndOff.addEventListener("click", function() {
     if ((camerasEnabled) && (scene == sceneSelection.map)) {
@@ -278,7 +312,12 @@ cameraButtonOnAndOff.addEventListener("click", function() {
         camerasEnabled = true;
     }
     scene = sceneSelection.map;
+
+    // Tell the canvas to render new content
+    sceneChanged = true;
+
     brownNoise25ms.play();
+    handleButtons();
 })
 hangupButton.addEventListener("click", function() {
     phonePopup.style.display = "none";
